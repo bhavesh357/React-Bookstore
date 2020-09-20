@@ -15,9 +15,7 @@ import {
   Snackbar,
 } from "@material-ui/core";
 import validation from "../../Service/validation";
-import calls from "../../Service/calls";
 let Validate = new validation();
-let Calls = new calls();
 
 class SignUp extends React.Component {
   state = {
@@ -91,18 +89,15 @@ class SignUp extends React.Component {
         password: this.state.firstPassword,
         service: "advance",
       };
-      Calls.signUpWithdata(user, (response) => {
-        let message;
-        if (response.data === undefined) {
-          message = response.response.data.error.message;
-        } else {
-          message = response.data.data.message;
+      // to add
+      let message;
+        if (this.props.authError === undefined) {
+          message = this.props.authError;
         }
         this.setState({
           snackbarMessage: message,
           snackbarStatus: true,
         });
-      });
     }
   };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { Link} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import {
   Card,
@@ -11,9 +11,9 @@ import {
   Snackbar,
 } from "@material-ui/core";
 import validation from "../../Service/validation";
-import calls from "../../Service/calls";
+import { signIn } from "./../../Redux/Actions/authActions";
+import { connect } from "react-redux";
 let Validate = new validation();
-let Calls = new calls();
 
 class SignIn extends React.Component {
   state = {
@@ -41,26 +41,18 @@ class SignIn extends React.Component {
         email: this.state.email,
         password: this.state.password,
       };
-      Calls.signInWithData(user, (response) => {
-        let message;
-        if (response.data === undefined) {
-          message = response.response.data.error.message;
-          this.setState({
-            snackbarMessage: message,
-            snackbarStatus: true,
-          });
-        } else {
-          localStorage.setItem('token',response.data.id);
-          localStorage.setItem('userId',response.data.userId);
-          this.redirectToDashboard();
-        }
-      });
+      this.props.signIn(user);
+      console.log(this.props);
+      if (this.props.authError) {
+        this.setState({
+          snackbarMessage: this.props.authError,
+          snackbarStatus: true,
+        });
+      } else {
+        console.log("logged in", this.props.authError);
+      }
     }
   };
-
-  redirectToDashboard= () =>{
-    this.props.history.push("/dashboard/notes")
-  }
 
   handleSnackbarClose = () => {
     this.setState({
@@ -99,9 +91,7 @@ class SignIn extends React.Component {
             <CardContent className="card-content">
               <Grid item md={1}></Grid>
               <Grid item md={10} xs={10}>
-                <Typography variant="h4">
-                Sign in
-                </Typography>
+                <Typography variant="h4">Sign in</Typography>
                 <Typography className="page-subtitle">
                   Continue to Bookstore
                 </Typography>
@@ -153,4 +143,17 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    authError: state.auth.authError,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (creds) => dispatch(signIn(creds)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

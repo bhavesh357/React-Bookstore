@@ -5,10 +5,14 @@ import "./Scss/style.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import rootReducer from "./Redux/Reducer/rootReducer";
 import { Provider } from "react-redux";
-import thunk from "react-thunk";
+import thunk from 'redux-thunk';
+import { reduxFirestore, getFirestore } from 'redux-firestore';
+import { getFirebase, ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import fbConfig from './Config/fbConfig';
+import firebase from 'firebase/app';
 
 const theme = createMuiTheme({
   palette: {
@@ -25,15 +29,26 @@ const theme = createMuiTheme({
     fontFamily: "'Roboto',Ariel, sans-serif",
   },
 });
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
+  
+const store = createStore(rootReducer, 
+  compose(
+    applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
+    reduxFirestore(fbConfig)
+  )
+  );
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+    
+    <ReactReduxFirebaseProvider
+      firebase={fbConfig}
+      config={fbConfig}
+      dispatch={store.dispatch}>
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
+      </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
