@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
@@ -15,6 +15,9 @@ import {
   Snackbar,
 } from "@material-ui/core";
 import validation from "../../Service/validation";
+import { signUp } from "./../../Redux/Actions/authActions";
+import { showSnackbar, hideSnackbar } from "./../../Redux/Actions/snackbarActions";
+import { connect } from "react-redux";
 let Validate = new validation();
 
 class SignUp extends React.Component {
@@ -87,9 +90,15 @@ class SignUp extends React.Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         password: this.state.firstPassword,
-        service: "advance",
       };
       // to add
+      this.props.signUp(user, () => {
+        if (this.props.authError !== null) {
+          this.props.showSnackbar(this.props.authError);
+        } else {
+          console.log("signed up");
+        }
+      })
       let message;
         if (this.props.authError === undefined) {
           message = this.props.authError;
@@ -102,9 +111,7 @@ class SignUp extends React.Component {
   };
 
   handleSnackbarClose = () => {
-    this.setState({
-      snackbarStatus: false,
-    });
+    this.props.hideSnackbar();
   };
 
   handleFirstName = (e) => {
@@ -138,6 +145,11 @@ class SignUp extends React.Component {
   };
 
   render() {
+
+    if(this.props.auth.uid){
+      return <Redirect to='/dashboard' />
+    }
+
     return (
       <Grid container>
         <Snackbar
@@ -145,10 +157,10 @@ class SignUp extends React.Component {
             vertical: "bottom",
             horizontal: "center",
           }}
-          open={this.state.snackbarStatus}
+          open={this.props.snackbar.snackbarStatus}
           onClose={this.handleSnackbarClose}
           autoHideDuration={2000}
-          message={this.state.snackbarMessage}
+          message={this.props.snackbar.snackbarMessage}
         />
         <Grid item md={3} />
         <Grid item container md={6}>
@@ -288,4 +300,21 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    authError: state.auth.authError,
+    snackbar: state.snackbar,
+    auth: state.firebase.auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (user,callback) => dispatch(signUp(user,callback)),
+    showSnackbar: (message) => dispatch(showSnackbar(message)),
+    hideSnackbar: () => dispatch(hideSnackbar()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
