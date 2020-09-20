@@ -1,9 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "./Scss/style.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
+import { applyMiddleware, createStore } from "redux";
+import rootReducer from "./Redux/Reducer/rootReducer";
+import { Provider } from "react-redux";
+import thunk from "react-thunk";
 
 const theme = createMuiTheme({
   palette: {
@@ -20,11 +25,16 @@ const theme = createMuiTheme({
     fontFamily: "'Roboto',Ariel, sans-serif",
   },
 });
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

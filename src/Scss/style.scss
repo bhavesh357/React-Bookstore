@@ -1,0 +1,30 @@
+@import './_variables.scss';
+@import './signIn';
+@import './signUp';
+
+body{
+    margin: 0em;
+    padding: 0em;
+    height: 100vh;
+    width: 100%;
+    background: $background-color;
+    font: $font !important;
+    color: $logo-color;
+    letter-spacing: $letter-spacing;
+}
+
+li{
+    display: block;
+}
+
+.App{
+    width: 100%;
+    min-height: 100%;
+    background: $background-color;
+    display: flex;
+}
+
+
+#root{
+    height: 100%;
+}

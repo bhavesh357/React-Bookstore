@@ -1,0 +1,54 @@
+@import './variables';
+
+#sign-in{
+    width: 30%;
+    border: $border-color solid 1px;
+    border-radius: 10px;
+    margin: 4em auto;
+    padding: 2em 0em;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.page-subtitle{
+    padding: 0.5em;
+    font-size: 1.25em;
+}
+
+.sign-input{
+    width: 100%;
+    margin: 0.5em 0em !important;
+}
+
+.card{
+    border: $border-color solid 1px;
+    border-radius: 10px;
+    width: 100%;
+    margin: auto auto;
+    padding: 2em 0em;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.card-content{
+    display: flex;
+    justify-content: center;
+    height: inherit;
+    align-items: flex-start;
+}
+
+.sign-link{
+    display: flex;
+    text-decoration: none;
+    color: $primary-color;
+    font-weight: 600;
+    align-self: center;
+}
+
+.sign-links-button{
+    color: $background-color !important;
+}
+
+.sign-buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 0.5em;
+}

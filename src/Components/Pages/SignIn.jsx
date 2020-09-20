@@ -1,5 +1,4 @@
 import React from "react";
-import FundooLogo from "./../FundooLogo";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link} from "react-router-dom";
@@ -63,7 +62,7 @@ class SignIn extends React.Component {
     this.props.history.push("/dashboard/notes")
   }
 
-  handleSnackbarClose = (event, reason) => {
+  handleSnackbarClose = () => {
     this.setState({
       snackbarStatus: false,
     });
@@ -100,10 +99,11 @@ class SignIn extends React.Component {
             <CardContent className="card-content">
               <Grid item md={1}></Grid>
               <Grid item md={10} xs={10}>
-                <FundooLogo />
-                <Typography variant="h2" title="Sign in" />
+                <Typography variant="h4">
+                Sign in
+                </Typography>
                 <Typography className="page-subtitle">
-                  Continue to Fundoo
+                  Continue to Bookstore
                 </Typography>
                 <TextField
                   id="sign-in-email"
@@ -129,9 +129,6 @@ class SignIn extends React.Component {
                 />
                 <CardActions className="sign-buttons">
                   <div className="sign-links">
-                    <Link to={"/forgotpassword"} className="sign-link">
-                      Forgot Password?
-                    </Link>
                     <Link to={"/signup"} className="sign-link">
                       Sign Up Instead
                     </Link>

@@ -1,5 +1,4 @@
 import React from "react";
-import FundooLogo from "./../FundooLogo";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
@@ -107,7 +106,7 @@ class SignUp extends React.Component {
     }
   };
 
-  handleSnackbarClose = (event, reason) => {
+  handleSnackbarClose = () => {
     this.setState({
       snackbarStatus: false,
     });
@@ -162,10 +161,11 @@ class SignUp extends React.Component {
             <CardContent className="card-content">
               <Grid item md={1}></Grid>
               <Grid item md={10} xs={10}>
-                <FundooLogo />
-                <Typography variant="h2" title="Sign Up" />
+                <Typography variant="h4">
+                Sign Up
+                </Typography>
                 <Typography className="page-subtitle">
-                  Create your Fundoo Account
+                  Create your Bookstore Account
                 </Typography>
                 <Grid container spacing={3}>
                   <Grid item md={6} xs={12}>

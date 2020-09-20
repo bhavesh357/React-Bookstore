@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
+#sign-in {
+  width: 30%;
+  border: #dadce0 solid 1px;
+  border-radius: 10px;
+  margin: 4em auto;
+  padding: 2em 0em;
+  -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.page-subtitle {
+  padding: 0.5em;
+  font-size: 1.25em;
+}
+
+.sign-input {
+  width: 100%;
+  margin: 0.5em 0em !important;
+}
+
+.card {
+  border: #dadce0 solid 1px;
+  border-radius: 10px;
+  width: 100%;
+  margin: auto auto;
+  padding: 2em 0em;
+  -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: inherit;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.sign-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-decoration: none;
+  color: #446DFF;
+  font-weight: 600;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.sign-links-button {
+  color: #ffffff !important;
+}
+
+.sign-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1em 0.5em;
+}
+
+.sign-input-two {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#sign-up {
+  width: 50%;
+  border: #dadce0 solid 1px;
+  border-radius: 10px;
+  margin: 4em auto;
+  padding: 2em 0em;
+  -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.sign-up-input {
+  padding: 0em 0.25em;
+}
+
+.sign-input-row {
+  width: 80%;
+  margin: auto;
+}
+
+body {
+  margin: 0em;
+  padding: 0em;
+  height: 100vh;
+  width: 100%;
+  background: #ffffff;
+  font: "Roboto", "RobotoDraft", "Arial", sans-serif !important;
+  color: #5f6368;
+  letter-spacing: 0.01429em;
+}
+
+li {
+  display: block;
+}
+
+.App {
+  width: 100%;
+  min-height: 100%;
+  background: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#root {
+  height: 100%;
+}
+/*# sourceMappingURL=style.css.map */
