@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import validation from "../../Service/validation";
 import { signIn } from "./../../Redux/Actions/authActions";
+import { showSnackbar, hideSnackbar } from "./../../Redux/Actions/snackbarActions";
 import { connect } from "react-redux";
 let Validate = new validation();
 
@@ -19,8 +20,6 @@ class SignIn extends React.Component {
   state = {
     emailInvalid: false,
     passwordInvalid: false,
-    snackbarMessage: "hello",
-    snackbarStatus: false,
     email: "",
     password: "",
   };
@@ -41,23 +40,19 @@ class SignIn extends React.Component {
         email: this.state.email,
         password: this.state.password,
       };
-      this.props.signIn(user);
+      this.props.signIn(user, () => {
+        if (this.props.authError !== null) {
+          this.props.showSnackbar(this.props.authError);
+        } else {
+          console.log("logged in", this.props.authError);
+        }
+      });
       console.log(this.props);
-      if (this.props.authError) {
-        this.setState({
-          snackbarMessage: this.props.authError,
-          snackbarStatus: true,
-        });
-      } else {
-        console.log("logged in", this.props.authError);
-      }
     }
   };
 
   handleSnackbarClose = () => {
-    this.setState({
-      snackbarStatus: false,
-    });
+    this.props.hideSnackbar();
   };
 
   handleEmail = (e) => {
@@ -73,6 +68,10 @@ class SignIn extends React.Component {
   };
 
   render() {
+    if(this.props.auth.uid){
+      return <Redirect to='/dashboard' />
+    }
+
     return (
       <Grid container>
         <Snackbar
@@ -80,10 +79,10 @@ class SignIn extends React.Component {
             vertical: "bottom",
             horizontal: "center",
           }}
-          open={this.state.snackbarStatus}
+          open={this.props.snackbar.snackbarStatus}
           onClose={this.handleSnackbarClose}
           autoHideDuration={2000}
-          message={this.state.snackbarMessage}
+          message={this.props.snackbar.snackbarMessage}
         />
         <Grid item md={4} />
         <Grid item container md={4}>
@@ -147,12 +146,16 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     authError: state.auth.authError,
+    snackbar: state.snackbar,
+    auth: state.firebase.auth,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: (creds) => dispatch(signIn(creds)),
+    signIn: (creds,callback) => dispatch(signIn(creds,callback)),
+    showSnackbar: (message) => dispatch(showSnackbar(message)),
+    hideSnackbar: () => dispatch(hideSnackbar()),
   };
 };
 

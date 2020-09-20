@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect, useSelector } from 'react-redux';
+import Navbar from '../Navbar';
 
 function Dashboard(props) {
-    console.log(useSelector(state => state));
+    const auth = useSelector(state => state.firebase.auth);
 
-    console.log(props);
     return (
         <div>
-            r
+            <Navbar />
         </div>
     )
 }
