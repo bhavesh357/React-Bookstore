@@ -93,6 +93,10 @@
   margin: auto;
 }
 
+.dashboard {
+  width: 100%;
+}
+
 body {
   margin: 0em;
   padding: 0em;

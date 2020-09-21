@@ -6,7 +6,7 @@ function Dashboard(props) {
     const auth = useSelector(state => state.firebase.auth);
 
     return (
-        <div>
+        <div className="dashboard">
             <Navbar />
         </div>
     )
