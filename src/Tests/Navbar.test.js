@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -48,5 +49,10 @@ describe("Navbar", () => {
     it("check if navbar title present", () => {
       expect(wrapper.find('.navbar-title').length).toBe(3);
     });
+
+    
+    it("check if cart icon present", () => {
+        expect(wrapper.find(ShoppingCartOutlinedIcon).length).toBe(2);
+      });
   });
 });
