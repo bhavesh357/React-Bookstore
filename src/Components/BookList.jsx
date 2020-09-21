@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import firebase from './../Config/fbConfig';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +25,19 @@ export default function BookList() {
     const classes = useStyles();
   const [sort, setSort] = React.useState('RL');
   const [sortOpen, setSortOpen] = React.useState(false);
+  let booksList = [];
+  const store = firebase.firestore();
+  store.collection('books').get().then((res) => {
+      
+      res.forEach( doc => {
+          booksList.push(doc.data());
+      });
+  })
+  
+  const [books,setBooks] = React.useState(...booksList);
+
+  console.log(books);
+  
 
   const handleSortChange = (event) => {
     setSort(event.target.value);
