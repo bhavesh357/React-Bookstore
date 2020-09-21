@@ -1,0 +1,21 @@
+@import './variables';
+
+.navbar-parent{
+    display: flex !important;
+    flex-direction: inherit !important;
+}
+
+.navbar-search{
+    background-color: $background-color !important;
+    width: 60% !important;
+    display: flex !important;
+}
+
+.navbar-main{
+    width: inherit !important;
+}
+
+.search-text{
+    
+    color: $primary-text !important;
+}

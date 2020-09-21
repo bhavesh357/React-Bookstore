@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
 #sign-in {
   width: 30%;
   border: #dadce0 solid 1px;
@@ -95,6 +96,32 @@
 
 .dashboard {
   width: 100%;
+}
+
+.navbar-parent {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: inherit !important;
+  -webkit-box-direction: inherit !important;
+      -ms-flex-direction: inherit !important;
+          flex-direction: inherit !important;
+}
+
+.navbar-search {
+  background-color: #ffffff !important;
+  width: 60% !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.navbar-main {
+  width: inherit !important;
+}
+
+.search-text {
+  color: #000000 !important;
 }
 
 body {
