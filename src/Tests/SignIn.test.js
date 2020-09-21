@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import SignIn from './../Components/pages/SignIn';
+import {SignIn} from './../Components/pages/SignIn';
 import { Button } from '@material-ui/core';
 
 Enzyme.configure({
@@ -12,8 +12,22 @@ describe('Sign In', () => {
 
     let wrapper;
     let button;
+    
+  let defaultProps = {
+    auth: {
+      uid: null,
+    },
+    snackbar : {
+      snackbarStatus: false,
+      snackbarMessage: "",
+    },
+    signIn : () => {
+
+    }
+  };
+
     beforeEach(()=>{
-        wrapper = shallow(<SignIn />);
+        wrapper = shallow(<SignIn {...defaultProps} />);
         button = wrapper.find(Button);
     })
 

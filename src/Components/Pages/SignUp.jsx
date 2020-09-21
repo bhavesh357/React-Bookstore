@@ -20,7 +20,7 @@ import { showSnackbar, hideSnackbar } from "./../../Redux/Actions/snackbarAction
 import { connect } from "react-redux";
 let Validate = new validation();
 
-class SignUp extends React.Component {
+export class SignUp extends React.Component {
   state = {
     showPassword: false,
     showFirstPassword: false,

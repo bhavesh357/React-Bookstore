@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { Button } from "@material-ui/core";
-import SignUp from "../Components/pages/SignUp";
+import { SignUp } from "../Components/pages/SignUp";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -11,8 +11,21 @@ Enzyme.configure({
 describe("Sign Up", () => {
   let wrapper;
   let button;
+  let defaultProps = {
+    auth: {
+      uid: null,
+    },
+    snackbar : {
+      snackbarStatus: false,
+      snackbarMessage: "",
+    },
+    signUp : () => {
+
+    }
+  };
+
   beforeEach(() => {
-    wrapper = shallow(<SignUp />);
+    wrapper = shallow(<SignUp {...defaultProps}/>);
     button = wrapper.find(Button);
   });
 
@@ -34,9 +47,9 @@ describe("Sign Up", () => {
 
   it("when improper names should be invalid", () => {
     wrapper.setState({
-        firstName: "bhavesh",
-        lastName: "kadam",
-      });
+      firstName: "bhavesh",
+      lastName: "kadam",
+    });
     button.simulate("click");
     expect(wrapper.state("isFirstNameInvalid")).toBe(true);
     expect(wrapper.state("isLastNameInvalid")).toBe(true);
@@ -44,16 +57,16 @@ describe("Sign Up", () => {
 
   it("when improper passwords should be invalid", () => {
     wrapper.setState({
-        firstPassword: "Testing",
-      });
+      firstPassword: "Testing",
+    });
     button.simulate("click");
     expect(wrapper.state("isFirstPasswordInvalid")).toBe(true);
   });
 
   it("when improper email should be invalid", () => {
     wrapper.setState({
-        email: "bhavesh!33.hea",
-      });
+      email: "bhavesh!33.hea",
+    });
     button.simulate("click");
     expect(wrapper.state("isEmailInvalid")).toBe(true);
   });
