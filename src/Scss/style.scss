@@ -3,6 +3,7 @@
 @import './signUp';
 @import './dashboard';
 @import './navbar';
+@import './booklist';
 
 body{
     margin: 0em;
@@ -11,7 +12,7 @@ body{
     width: 100%;
     background: $background-color;
     font: $font !important;
-    color: $logo-color;
+    color: $primary-text;
     letter-spacing: $letter-spacing;
 }
 
