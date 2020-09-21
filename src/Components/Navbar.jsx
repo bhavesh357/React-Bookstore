@@ -184,7 +184,7 @@ function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title+ " navbar-title"} variant="h6" noWrap>
             Bookstore
           </Typography>
           <div className={classes.search+" navbar-search"}>

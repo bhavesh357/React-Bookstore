@@ -42,9 +42,11 @@ describe("Navbar", () => {
     });
 
     it("check if search bar present", () => {
-        // console.log(wrapper.debug());
-        console.log(wrapper.find('.navbar-search').debug())
       expect(wrapper.find('.navbar-search').length).toBe(1);
+    });
+
+    it("check if navbar title present", () => {
+      expect(wrapper.find('.navbar-title').length).toBe(3);
     });
   });
 });
