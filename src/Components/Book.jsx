@@ -19,7 +19,7 @@ export default function Book(props) {
   const classes = useStyles();
 
   return (
-    <Grid className="Book">
+    <Grid className="book">
       <Card className={classes.root}>
         <div className="book-info">
           <div className="book-image-container">

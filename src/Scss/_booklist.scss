@@ -1,6 +1,9 @@
+@import './variables';
+
 .booklist-details{
     display: flex;
     justify-content: space-between;
+    padding: 1em !important;
 }
 
 .booklist-details-count{
@@ -10,6 +13,13 @@
 
 #controlled-open-select{
     padding: 10px 5px !important;
+}
+
+.pagination{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 2em;
 }
 
 .booklist-books{

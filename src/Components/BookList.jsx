@@ -7,6 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import firebaseCalls from "./../Service/firebase";
 import Book from "./Book";
+import { Pagination } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -24,6 +25,7 @@ export default function BookList() {
   const [sort, setSort] = React.useState("RL");
   const [sortOpen, setSortOpen] = React.useState(false);
   const [books, setBooks] = React.useState([]);
+  const [pageCount, setPageCount] = React.useState(1);
 
   useEffect(() => {
     firebaseCalls.getBooks().then((res) => {
@@ -43,17 +45,28 @@ export default function BookList() {
     setSortOpen(true);
   };
 
-  let booksList = books.map( (item,index) => {
-    return <Grid item key={item.id}  md={3}><Book book={item}  /></Grid>;
-  })
+  const handlePagination = (object, page) => {
+    setPageCount(page)
+  }
+
+  let booksList = books.map((item, index) => {
+    if(index<8*pageCount && index>=8*(pageCount-1)){
+      return (
+        <Grid className="book-card" item key={item.id} md={3}>
+          <Book book={item} />
+        </Grid>
+      );
+    }
+    return null;
+  });
 
   return (
     <Grid container>
       <Grid item md={1}></Grid>
       <Grid container item md={10}>
-        <Grid item md={12} className="booklist-details">
+        <Grid item container md={12} className="booklist-details">
           <Typography variant="h6" className="booklist-details-count">
-            Books(128 books)
+            Books({books.length} books)
           </Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <Select
@@ -72,10 +85,12 @@ export default function BookList() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid container spacing={3} item md={12} className="booklist-books">
+        <Grid item container spacing={3} md={12} className="booklist-books">
           {booksList}
         </Grid>
       </Grid>
+
+      <Pagination  className="pagination" page={pageCount} onChange={handlePagination} count={Math.round(books.length/8)+1} variant="outlined" shape="rounded" />
       <Grid item md={1}></Grid>
     </Grid>
   );
