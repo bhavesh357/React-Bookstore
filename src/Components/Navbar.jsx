@@ -212,7 +212,7 @@ function Navbar() {
                   aria-label="show 17 new notifications"
                   color="inherit"
                 >
-                  <Badge badgeContent={17} color="secondary">
+                  <Badge badgeContent={1} color="secondary">
                     <ShoppingCartOutlinedIcon />
                   </Badge>
                 </IconButton>

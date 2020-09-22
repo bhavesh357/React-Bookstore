@@ -146,6 +146,14 @@
   padding: 10px 5px !important;
 }
 
+.booklist-books {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: inherit;
+      flex-wrap: inherit;
+}
+
 body {
   margin: 0em;
   padding: 0em;
