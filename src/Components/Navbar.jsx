@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: "#000000"
+    color: "#000000",
   },
   inputRoot: {
     color: "inherit",
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navbar() {
+function Navbar(props) {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.firebase.auth);
 
@@ -116,6 +116,16 @@ function Navbar() {
   const handleSignOut = () => {
     handleMenuClose();
     dispatch(signOut());
+  };
+
+  const handleSearch = (event) => {
+    console.log(event.target.value.length);
+    
+    if(event.target.value.length>0){
+      props.handleSearch(event.target.value);
+    }else{
+      props.handleSearch("");
+    }
   };
 
   const menuId = "primary-search-account-menu";
@@ -173,10 +183,10 @@ function Navbar() {
 
   return (
     <div className={classes.grow}>
-      <Grid container >
+      <Grid container>
         <AppBar position="static" className="navbar-parent">
           <Grid item md={1}></Grid>
-          <Grid item md={10} className="navbar-main" >
+          <Grid item md={10} className="navbar-main">
             <Toolbar>
               <IconButton
                 edge="start"
@@ -201,8 +211,9 @@ function Navbar() {
                   placeholder="Search…"
                   classes={{
                     root: classes.inputRoot,
-                    input: classes.inputInput+" search-text",
+                    input: classes.inputInput + " search-text",
                   }}
+                  onChange={handleSearch}
                   inputProps={{ "aria-label": "search" }}
                 />
               </div>
@@ -240,7 +251,7 @@ function Navbar() {
               </div>
             </Toolbar>
           </Grid>
-      <Grid item md={1}></Grid>
+          <Grid item md={1}></Grid>
         </AppBar>
         {renderMobileMenu}
         {renderMenu}

@@ -20,16 +20,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BookList() {
+export default function BookList(props) {
   const classes = useStyles();
   const [sort, setSort] = React.useState("RL");
   const [sortOpen, setSortOpen] = React.useState(false);
   const [books, setBooks] = React.useState([]);
   const [pageCount, setPageCount] = React.useState(1);
+  const [searchText, setSearchText] = React.useState("");
+
+  
+  const filterBooks = (list) => {
+    if(props.searchText===""){
+      return list;
+    }else{
+      let newList=[];
+      for(let i=0; i<list.length;i++){
+        if(list[i].title.toLowerCase().includes(props.searchText.toLowerCase())  || list[i].author.toLowerCase().includes(props.searchText.toLowerCase())  ){
+          console.log(list[i]);
+          newList.push(list[i]);
+        }
+      }
+      return newList;
+    }
+  }
+
+  if(searchText !== props.searchText ) {
+    setSearchText(props.searchText);
+    setPageCount(1);
+    firebaseCalls.getBooks().then((res) => {
+      setBooks(filterBooks(res));
+    });
+  } 
 
   useEffect(() => {
     firebaseCalls.getBooks().then((res) => {
-      setBooks(res);
+      setBooks(filterBooks(res));
     });
   }, []);
 
@@ -90,7 +115,7 @@ export default function BookList() {
         </Grid>
       </Grid>
 
-      <Pagination  className="pagination" page={pageCount} onChange={handlePagination} count={Math.round(books.length/8)+1} variant="outlined" shape="rounded" />
+      <Pagination  className="pagination" page={pageCount} onChange={handlePagination} count={Math.ceil(books.length/8)} variant="outlined" shape="rounded" />
       <Grid item md={1}></Grid>
     </Grid>
   );
