@@ -13,9 +13,6 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
   },
-  media: {
-    height: 100,
-  },
 });
 
 export default function Book(props) {
@@ -24,32 +21,34 @@ export default function Book(props) {
   return (
     <Grid className="Book">
       <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={props.book.image}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+        <div className="book-info">
+          <div className="book-image-container">
+            <img src={props.book.image} alt={props.book.title}/>
+          </div>
+          <div className="book-details">
+            <Typography gutterBottom className="book-title" color="textPrimary" component="h2">
               {props.book.title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography className="book-author" color="textSecondary" component="p">
               by {props.book.author}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography className="book-price" color="textPrimary" component="p">
               Rs. {props.book.price}
             </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
+          </div>
+        </div>
+        <Grid container spacing={1} className="book-buttons" >
+        <Grid item md={6}>
+          <Button size="small" className="bag-button button" variant="contained" color="primary">
+            Add to Bag
           </Button>
-          <Button size="small" color="primary">
-            Learn More
+          </Grid>
+        <Grid item md={6}>
+          <Button size="small" className="button" variant="outlined" color="primary">
+            Wishlist
           </Button>
-        </CardActions>
+          </Grid>
+        </Grid>
       </Card>
     </Grid>
   );

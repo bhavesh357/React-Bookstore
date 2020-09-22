@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
 #sign-in {
   width: 30%;
   border: #dadce0 solid 1px;
@@ -152,6 +153,68 @@
   display: flex;
   -ms-flex-wrap: inherit;
       flex-wrap: inherit;
+}
+
+.book-image-container {
+  background: #F5F5F5;
+  padding: 1em;
+}
+
+.book-image-container img {
+  height: 200px;
+}
+
+.book-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0.5em 1.25em;
+}
+
+.book-title {
+  font-weight: 600 !important;
+  margin-bottom: 0em !important;
+}
+
+.book-author {
+  font-size: .8em !important;
+}
+
+.book-price {
+  font-weight: 600 !important;
+  padding-top: 0.5em;
+}
+
+.book-info {
+  cursor: auto !important;
+}
+
+.book-info:hover {
+  background-color: #ffffff !important;
+}
+
+.book-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5em 1.25em 1.5em 1.25em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.book-buttons .button {
+  padding: 0.25em 1em;
 }
 
 body {

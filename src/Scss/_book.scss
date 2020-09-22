@@ -1,0 +1,48 @@
+@import './variables';
+
+.book-image-container{
+    background: $book-image-background;
+    padding: 1em;
+    img{
+        height: 200px;
+    }
+}
+
+.book-details{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5em 1.25em;
+}
+
+.book-title{
+    font-weight: 600 !important;
+    margin-bottom: 0em !important;
+}
+
+.book-author{
+    font-size: .8em !important;
+}
+
+.book-price{
+    font-weight: 600 !important;
+    padding-top: 0.5em;
+}
+
+.book-info{
+    cursor: auto !important;
+    &:hover{
+        background-color: $background-color !important;
+    }
+}
+
+.book-buttons{
+    display: flex;
+    padding: 0.5em 1.25em 1.5em 1.25em;
+    align-items: center;
+    justify-content: center;
+    .button{
+        padding: 0.25em 1em;
+    }
+}
+
