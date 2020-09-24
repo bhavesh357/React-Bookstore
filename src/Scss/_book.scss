@@ -21,6 +21,14 @@
     padding: 0.5em 1.25em;
 }
 
+.book-details-cart{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5em 1.25em;
+    align-self: flex-start;
+}
+
 .book-title{
     font-weight: 600 !important;
     margin-bottom: 0em !important;
@@ -30,6 +38,34 @@
     font-size: .8em !important;
 }
 
+.book-info-cart{
+    display: flex;
+    cursor: auto !important;
+    padding: 0.5em 0em;
+    flex-direction: row;
+}
+
+.book-info-side-cart{
+    display: flex;
+    flex-direction: column;
+    padding: 0em 0em 2em 0em;
+    align-items: flex-start;
+}
+
+.cart-book-quantity{
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+.book-cart-quantity{
+    display: flex;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button{
+        -webkit-appearance: none !important;
+    }
+}
+
 .book-price{
     font-weight: 600 !important;
     padding-top: 0.5em;
@@ -37,6 +73,19 @@
 
 .book-info{
     cursor: auto !important;
+    &:hover{
+        background-color: $background-color !important;
+    }
+}
+
+.cart-books{
+    padding: 2em 0em;
+}
+
+.book-info-cart{
+    display: flex;
+    cursor: auto !important;
+    padding: 0.5em 0em;
     &:hover{
         background-color: $background-color !important;
     }

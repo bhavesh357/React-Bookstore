@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap");
 #sign-in {
   width: 30%;
   border: #dadce0 solid 1px;
@@ -122,8 +123,9 @@
   width: inherit !important;
 }
 
-.cart-button {
+.navbar-button {
   color: #ffffff !important;
+  text-decoration: none;
 }
 
 .search-text {
@@ -200,6 +202,22 @@
   padding: 0.5em 1.25em;
 }
 
+.book-details-cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0.5em 1.25em;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
 .book-title {
   font-weight: 600 !important;
   margin-bottom: 0em !important;
@@ -207,6 +225,53 @@
 
 .book-author {
   font-size: .8em !important;
+}
+
+.book-info-cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: auto !important;
+  padding: 0.5em 0em;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.book-info-side-cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0em 0em 2em 0em;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.cart-book-quantity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 20%;
+}
+
+.book-cart-quantity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.book-cart-quantity input::-webkit-outer-spin-button,
+.book-cart-quantity input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
 }
 
 .book-price {
@@ -219,6 +284,22 @@
 }
 
 .book-info:hover {
+  background-color: #ffffff !important;
+}
+
+.cart-books {
+  padding: 2em 0em;
+}
+
+.book-info-cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: auto !important;
+  padding: 0.5em 0em;
+}
+
+.book-info-cart:hover {
   background-color: #ffffff !important;
 }
 
@@ -241,6 +322,31 @@
 
 .book-buttons .button {
   padding: 0.25em 1em;
+}
+
+.cart-details {
+  padding: 2em 8em;
+}
+
+.cart-box {
+  border: solid 1px #dadce0;
+  padding: 0em 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  padding: 1em 2em;
+}
+
+.place-order {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 body {

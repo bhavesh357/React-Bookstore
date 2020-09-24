@@ -192,21 +192,25 @@ function Navbar(props) {
           <Grid item md={1}></Grid>
           <Grid item md={10} className="navbar-main">
             <Toolbar>
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="open drawer"
-              >
-                <img src={BookIcon} alt="bookstore location" />
-              </IconButton>
-              <Typography
-                className={classes.title + " navbar-title"}
-                variant="h6"
-                noWrap
-              >
-                Bookstore
-              </Typography>
+              <Link to="/dashboard" className="navbar-button">
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="open drawer"
+                >
+                  <img src={BookIcon} alt="bookstore location" />
+                </IconButton>
+              </Link>
+              <Link to="/dashboard" className="navbar-button">
+                <Typography
+                  className={classes.title + " navbar-title"}
+                  variant="h6"
+                  noWrap
+                >
+                  Bookstore
+                </Typography>
+              </Link>
               <div className={classes.search + " navbar-search"}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
@@ -223,7 +227,7 @@ function Navbar(props) {
               </div>
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
-                <Link to="/cart" className="cart-button" >
+                <Link to="/cart" className="navbar-button">
                   <IconButton
                     aria-label="show 17 new notifications"
                     color="inherit"

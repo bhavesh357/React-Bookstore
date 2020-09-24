@@ -1,0 +1,18 @@
+@import './variables';
+
+.cart-details{
+    padding: 2em 8em;
+}
+
+.cart-box{
+    border: solid 1px $border-color;
+    padding: 0em 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 1em 2em;
+}
+
+.place-order{
+    align-self: flex-end;
+}
