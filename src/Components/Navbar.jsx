@@ -1,7 +1,7 @@
 import { Button, Grid } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { signOut } from "./../Redux/Actions/authActions";
 
 import { fade, makeStyles } from "@material-ui/core/styles";
@@ -92,12 +92,12 @@ function Navbar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [bookCount,setBookCount] = React.useState(props.bookCount);
+  const [bookCount, setBookCount] = React.useState(props.bookCount);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  if(bookCount !== props.bookCount){
+  if (bookCount !== props.bookCount) {
     setBookCount(props.bookCount);
   }
 
@@ -125,9 +125,9 @@ function Navbar(props) {
 
   const handleSearch = (event) => {
     console.log(event.target.value.length);
-    if(event.target.value.length>0){
+    if (event.target.value.length > 0) {
       props.handleSearch(event.target.value);
-    }else{
+    } else {
       props.handleSearch("");
     }
   };
@@ -223,14 +223,16 @@ function Navbar(props) {
               </div>
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
-                <IconButton
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Badge badgeContent={bookCount} color="secondary">
-                    <ShoppingCartOutlinedIcon />
-                  </Badge>
-                </IconButton>
+                <Link to="/cart" className="cart-button" >
+                  <IconButton
+                    aria-label="show 17 new notifications"
+                    color="inherit"
+                  >
+                    <Badge badgeContent={bookCount} color="secondary">
+                      <ShoppingCartOutlinedIcon />
+                    </Badge>
+                  </IconButton>
+                </Link>
                 <IconButton
                   edge="end"
                   aria-label="account of current user"
