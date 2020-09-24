@@ -5,30 +5,38 @@ import Navbar from "../Navbar";
 import firebaseCalls from "./../../Service/firebase";
 
 export default function Cart() {
-  const [bookList, setBookList] = useState([]);
-
-  useEffect(() => {
-    firebaseCalls.getBookListWithDetails().then((res) => {
-      console.log(res);
-      setBookList(res);
-    });
-  }, []);
-
-  return (
-    <div className="dashboard">
-      <Navbar
+    const [bookList, setBookList] = useState([]);
+    
+    useEffect(() => {
+        firebaseCalls.getBookListWithDetails().then((res) => {
+            console.log(res);
+            setBookList(res);
+        });
+    }, []);
+    
+    const reloadCart = () => {
+        firebaseCalls.getBookListWithDetails().then((res) => {
+            console.log(res);
+            setBookList(res);
+        });
+    }
+    
+    return (
+        <div className="dashboard">
+        <Navbar
         bookCount={0}
         handleSearch={() => {
-          console.log("cart");
+            console.log("cart");
         }}
-      />
-      <Grid container className="cart-details">
+        />
+        <Grid container className="cart-details">
         <Grid item md={10}>
-          <Grid item md={10}>
-            <CustomerCart books={bookList}></CustomerCart>
-          </Grid>
+        <Grid item md={10}>
+        <CustomerCart reloadCart={reloadCart} books={bookList}></CustomerCart>
         </Grid>
-      </Grid>
-    </div>
-  );
-}
+        </Grid>
+        </Grid>
+        </div>
+        );
+    }
+    

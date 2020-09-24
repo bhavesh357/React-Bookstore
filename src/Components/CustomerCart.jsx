@@ -4,9 +4,8 @@ import CartBook from './CartBook';
 
 export default function CustomerCart(props) {
 
-
     let cartBooks = props.books.map( (book) => {
-        return <CartBook book={book}/>
+        return <CartBook reloadCart={props.reloadCart} book={book}/>
     });
 
     return (

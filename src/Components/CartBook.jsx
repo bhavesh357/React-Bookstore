@@ -1,19 +1,21 @@
-import { IconButton, TextField, Typography } from "@material-ui/core";
+import { Button, IconButton, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@material-ui/icons/RemoveCircleOutlineRounded";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
+import firebaseCalls from './../Service/firebase';
 
 export default function CartBook(props) {
     const [selectedQuantity, setSelectedQuantity] = useState(props.book.selectedQuantity);
     const handleChange = (event) => {
         if(event.target.value<props.book.quantity){
             setSelectedQuantity(event.target.value);
+            firebaseCalls.editQuantity(props.book.id,event.target.value);
         }
     }
     
     return (
         <div className="book-info-cart">
-        <div className="book-image-container-cart">
+        <div className="book-image-container">
         <img src={props.book.image} alt={props.book.title} />
         </div>
         <div className="book-details-cart">
@@ -45,6 +47,7 @@ export default function CartBook(props) {
         <IconButton onClick={()=> {
             if(selectedQuantity>1){
                 setSelectedQuantity(selectedQuantity-1);
+                firebaseCalls.editQuantity(props.book.id,selectedQuantity-1)
             }
         }} >
         <RemoveCircleOutlineRoundedIcon />
@@ -53,13 +56,19 @@ export default function CartBook(props) {
         <IconButton onClick={()=> {
             if(selectedQuantity<props.book.quantity){
                 setSelectedQuantity(selectedQuantity+1);
+                firebaseCalls.editQuantity(props.book.id,selectedQuantity+1);
             }
         }} >
         <AddCircleOutlineRoundedIcon />
         </IconButton>
-        </div>
-        </div>
-        </div>
-        );
-    }
-    
+        <Button onClick={() =>{
+            firebaseCalls.removeBookToCart(props.book.id).then( () => {
+                props.reloadCart();
+            })
+        }
+    } >Remove</Button>
+    </div>
+    </div>
+    </div>
+    );
+}

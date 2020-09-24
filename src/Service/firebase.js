@@ -4,18 +4,18 @@ class FirebaseCalls {
   store = firebase.firestore();
   getBooks = () => {
     return this.store
-      .collection("books")
-      .get()
-      .then((res) => {
-        let booksList = [];
-        console.log(res);
-        res.forEach((doc) => {
-          booksList.push({ ...doc.data(), id: doc.id });
-        });
-        return booksList;
+    .collection("books")
+    .get()
+    .then((res) => {
+      let booksList = [];
+      console.log(res);
+      res.forEach((doc) => {
+        booksList.push({ ...doc.data(), id: doc.id });
       });
+      return booksList;
+    });
   };
-
+  
   getBookListWithDetails = async () => {
     let booksInCart = await this.getBookList();
     let allBooks = await this.getBooks();
@@ -29,42 +29,60 @@ class FirebaseCalls {
         selectedQuantity: booksInCart[i].quantity,
       })
     }
-
+    
     return tempBooks;
   }
-
+  
   removeBookToCart = async (id) => {
     const user = this.getUser();
     const bookList = await this.getBookList();
     remove(bookList, (book) => {
       return book.id===id;
     });
-
+    
     user.set({
-        bookList: [
-          ...bookList
-        ],
-      },{
-        merge: true
-      })
+      bookList: [
+        ...bookList
+      ],
+    },{
+      merge: true
+    })
   };
-
+  
+  editQuantity = async (id,quantity) => {
+    const user = this.getUser();
+    const bookList = await this.getBookList();
+    remove(bookList, (book) => {
+      return book.id===id;
+    });user.set({
+      bookList: [
+        ...bookList,
+        {
+          id: id,
+          quantity: quantity,
+        },
+      ],
+    },{
+      merge: true
+    })
+  }
+  
   addBookToCart = async (id) => {
     const user = this.getUser();
     const bookList = await this.getBookList();
     user.set({
-        bookList: [
-          ...bookList,
-          {
-            id: id,
-            quantity: 1,
-          },
-        ],
-      },{
-        merge: true
-      })
+      bookList: [
+        ...bookList,
+        {
+          id: id,
+          quantity: 1,
+        },
+      ],
+    },{
+      merge: true
+    })
   };
-
+  
   getBookList = async () => {
     const user = this.getUser();
     const doc = await user.get();
@@ -77,7 +95,7 @@ class FirebaseCalls {
     }
     return bookList;
   }
-
+  
   getUser = () => {
     const currentUser = firebase.auth().currentUser.uid;
     return this.store.collection("users").doc(currentUser);
