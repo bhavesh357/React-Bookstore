@@ -13,16 +13,10 @@ function Dashboard(props) {
         setSearchText(text)
     }
 
-    
-    const handleBookToCart= (bookId,callback) => {
-        console.log(auth);
-        firebaseCalls.addBookToUser(bookId);
-    }
-
     return (
         <div className="dashboard">
             <Navbar handleSearch={handleSearch} />
-            <BookList handleBookToCart={handleBookToCart} searchText={searchText} />
+            <BookList searchText={searchText} />
         </div>
     )
 }

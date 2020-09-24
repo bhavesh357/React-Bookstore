@@ -80,7 +80,7 @@ export default function BookList(props) {
     if(index<itemsPerPage*pageCount && index>=itemsPerPage*(pageCount-1)){
       return (
         <Grid className="book-card" item key={item.id} md={3}>
-          <Book handleBookToCart={props.handleBookToCart} book={item} />
+          <Book book={item} />
         </Grid>
       );
     }

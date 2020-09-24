@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import firebaseCalls from './../Service/firebase';
 
 const useStyles = makeStyles({
   root: {
@@ -16,8 +17,8 @@ export default function Book(props) {
 
   const [isInCart,setIsIncart] = useState(false);
 
-  const handleInCart= () => {
-    props.handleBookToCart(props.book.id,() => {
+  const addInCart= () => {
+    firebaseCalls.addBookToUser(props.book.id).then( (res) => {
       setIsIncart(!isInCart);
     });
   }
@@ -43,11 +44,11 @@ export default function Book(props) {
         </div>
         <Grid container spacing={0} className="book-buttons" >
         { isInCart ? <Grid item md={12}>
-          <Button size="small" onClick={handleInCart} className="button full-button" variant="contained" color="secondary">
+          <Button size="small" onClick={addInCart} className="button full-button" variant="contained" color="secondary">
             Added to Bag
           </Button>
           </Grid> : <><Grid item md={6}>
-          <Button size="small" onClick={handleInCart} className="bag-button button" variant="contained" color="primary">
+          <Button size="small" onClick={addInCart} className="bag-button button" variant="contained" color="primary">
             Add to Bag
           </Button>
           </Grid>
