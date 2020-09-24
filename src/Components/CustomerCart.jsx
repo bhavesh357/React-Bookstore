@@ -13,10 +13,11 @@ export default function CustomerCart(props) {
             <Typography variant="h5">
                 My cart({props.books.length})
             </Typography>
-            <div className="cart-books" variant="h5">
+            {props.books.length === 0 ? <div className="empty-cart" >Cart Is Empty</div> : 
+            (<div className="cart-books" variant="h5">
                 {cartBooks}
-            </div>
-            <Button className="place-order" variant="contained" color="secondary" >Place Order</Button>
+            </div> )}
+            {/* <Button className="place-order" variant="contained" color="secondary" >Place Order</Button> */}
         </div>
     )
 }

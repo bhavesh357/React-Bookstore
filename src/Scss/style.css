@@ -344,6 +344,13 @@
   padding: 1em 2em;
 }
 
+.empty-cart {
+  font-size: 1.5em;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
 .place-order {
   -ms-flex-item-align: end;
       align-self: flex-end;
