@@ -8,6 +8,7 @@ class FirebaseCalls {
       .get()
       .then((res) => {
         let booksList = [];
+        console.log(res);
         res.forEach((doc) => {
           booksList.push({ ...doc.data(), id: doc.id });
         });
@@ -51,7 +52,7 @@ class FirebaseCalls {
     const user = this.getUser();
     const doc = await user.get();
     let bookList;
-    console.log(doc);
+    console.log(doc.data());
     if (!doc.exists) {
       bookList = [];
     } else {

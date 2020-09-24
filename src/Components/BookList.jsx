@@ -8,6 +8,7 @@ import Select from "@material-ui/core/Select";
 import firebaseCalls from "./../Service/firebase";
 import Book from "./Book";
 import { Pagination } from "@material-ui/lab";
+import { findIndex } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -28,37 +29,49 @@ export default function BookList(props) {
   const [itemsPerPage, setItemsPerPage] = React.useState(8);
   const [pageCount, setPageCount] = React.useState(1);
   const [searchText, setSearchText] = React.useState("");
+  const [booksInCart, setBooksInCart] = React.useState([]);
 
 
-  
+  const reloadBooks = () => {
+    firebaseCalls.getBookList().then((res) => {
+      setBooksInCart(res);
+    });
+  }
+
   const filterBooks = (list) => {
-    if(props.searchText===""){
+    if (props.searchText === "") {
       return list;
-    }else{
-      let newList=[];
-      for(let i=0; i<list.length;i++){
-        if(list[i].title.toLowerCase().includes(props.searchText.toLowerCase())  || list[i].author.toLowerCase().includes(props.searchText.toLowerCase())  ){
+    } else {
+      let newList = [];
+      for (let i = 0; i < list.length; i++) {
+        if (
+          list[i].title
+            .toLowerCase()
+            .includes(props.searchText.toLowerCase()) ||
+          list[i].author.toLowerCase().includes(props.searchText.toLowerCase())
+        ) {
           console.log(list[i]);
           newList.push(list[i]);
         }
       }
       return newList;
     }
-  }
+  };
 
-  if(searchText !== props.searchText ) {
+  if (searchText !== props.searchText) {
     setSearchText(props.searchText);
     setPageCount(1);
     firebaseCalls.getBooks().then((res) => {
       setBooks(filterBooks(res));
     });
-  } 
+  }
 
   useEffect(() => {
     firebaseCalls.getBooks().then((res) => {
       setBooks(filterBooks(res));
+      reloadBooks();
     });
-  }, []);
+  },[]);
 
   const handleSortChange = (event) => {
     setSort(event.target.value);
@@ -73,14 +86,25 @@ export default function BookList(props) {
   };
 
   const handlePagination = (object, page) => {
-    setPageCount(page)
-  }
+    setPageCount(page);
+  };
+
+  const isInCart = (id) => {
+    return (
+      findIndex(booksInCart, (book) => {
+        return book.id === id;
+      }) !== -1
+    );
+  };
 
   let booksList = books.map((item, index) => {
-    if(index<itemsPerPage*pageCount && index>=itemsPerPage*(pageCount-1)){
+    if (
+      index < itemsPerPage * pageCount &&
+      index >= itemsPerPage * (pageCount - 1)
+    ) {
       return (
         <Grid className="book-card" item key={item.id} md={3}>
-          <Book book={item} />
+          <Book reloadBooks={reloadBooks} inCart={isInCart(item.id)} book={item} />
         </Grid>
       );
     }
@@ -117,7 +141,14 @@ export default function BookList(props) {
         </Grid>
       </Grid>
 
-      <Pagination  className="pagination" page={pageCount} onChange={handlePagination} count={Math.ceil(books.length/8)} variant="outlined" shape="rounded" />
+      <Pagination
+        className="pagination"
+        page={pageCount}
+        onChange={handlePagination}
+        count={Math.ceil(books.length / 8)}
+        variant="outlined"
+        shape="rounded"
+      />
       <Grid item md={1}></Grid>
     </Grid>
   );

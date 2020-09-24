@@ -15,17 +15,18 @@ const useStyles = makeStyles({
 export default function Book(props) {
   const classes = useStyles();
 
-  const [isInCart,setIsIncart] = useState(false);
 
   const addInCart= () => {
+    console.log("add");
     firebaseCalls.addBookToCart(props.book.id).then( (res) => {
-      setIsIncart(!isInCart);
+      props.reloadBooks();
     });
   }
 
   const removeFromCart = () => {
+    console.log("remove");
     firebaseCalls.removeBookToCart(props.book.id).then( (res) => {
-      setIsIncart(!isInCart);
+      props.reloadBooks();
     });
   }
 
@@ -49,7 +50,7 @@ export default function Book(props) {
           </div>
         </div>
         <Grid container spacing={0} className="book-buttons" >
-        { isInCart ? <Grid item md={12}>
+        { props.inCart ? <Grid item md={12}>
           <Button size="small" onClick={removeFromCart} className="button full-button" variant="contained" color="secondary">
             Added to Bag
           </Button>
