@@ -92,9 +92,14 @@ function Navbar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [bookCount,setBookCount] = React.useState(props.bookCount);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  if(bookCount !== props.bookCount){
+    setBookCount(props.bookCount);
+  }
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -120,7 +125,6 @@ function Navbar(props) {
 
   const handleSearch = (event) => {
     console.log(event.target.value.length);
-    
     if(event.target.value.length>0){
       props.handleSearch(event.target.value);
     }else{
@@ -223,7 +227,7 @@ function Navbar(props) {
                   aria-label="show 17 new notifications"
                   color="inherit"
                 >
-                  <Badge badgeContent={1} color="secondary">
+                  <Badge badgeContent={bookCount} color="secondary">
                     <ShoppingCartOutlinedIcon />
                   </Badge>
                 </IconButton>
