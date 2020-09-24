@@ -25,8 +25,10 @@ export default function BookList(props) {
   const [sort, setSort] = React.useState("RL");
   const [sortOpen, setSortOpen] = React.useState(false);
   const [books, setBooks] = React.useState([]);
+  const [itemsPerPage, setItemsPerPage] = React.useState(8);
   const [pageCount, setPageCount] = React.useState(1);
   const [searchText, setSearchText] = React.useState("");
+
 
   
   const filterBooks = (list) => {
@@ -75,10 +77,10 @@ export default function BookList(props) {
   }
 
   let booksList = books.map((item, index) => {
-    if(index<8*pageCount && index>=8*(pageCount-1)){
+    if(index<itemsPerPage*pageCount && index>=itemsPerPage*(pageCount-1)){
       return (
         <Grid className="book-card" item key={item.id} md={3}>
-          <Book book={item} />
+          <Book handleBookToCart={props.handleBookToCart} book={item} />
         </Grid>
       );
     }

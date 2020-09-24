@@ -2,6 +2,7 @@ import React from 'react'
 import { connect, useSelector } from 'react-redux';
 import BookList from '../BookList';
 import Navbar from '../Navbar';
+import firebaseCalls from './../../Service/firebase';
 
 function Dashboard(props) {
     const auth = useSelector(state => state.firebase.auth);
@@ -12,10 +13,16 @@ function Dashboard(props) {
         setSearchText(text)
     }
 
+    
+    const handleBookToCart= (bookId,callback) => {
+        console.log(auth);
+        firebaseCalls.addBookToUser(bookId);
+    }
+
     return (
         <div className="dashboard">
             <Navbar handleSearch={handleSearch} />
-            <BookList searchText={searchText} />
+            <BookList handleBookToCart={handleBookToCart} searchText={searchText} />
         </div>
     )
 }

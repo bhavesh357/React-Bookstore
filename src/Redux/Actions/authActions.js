@@ -51,6 +51,7 @@ export const signUp = ( credentials , callback) => {
             return firestore.collection('users').doc(response.user.uid).set({
                 firstName: credentials.firstName,
                 lastName: credentials.lastName,
+                bookList: [],
             });
         }).then( () => {
             dispatch({

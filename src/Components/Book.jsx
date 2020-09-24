@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import React from "react";
+import React,{ useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
@@ -13,6 +13,14 @@ const useStyles = makeStyles({
 
 export default function Book(props) {
   const classes = useStyles();
+
+  const [isInCart,setIsIncart] = useState(false);
+
+  const handleInCart= () => {
+    props.handleBookToCart(props.book.id,() => {
+      setIsIncart(!isInCart);
+    });
+  }
 
   return (
     <Grid className="book">
@@ -33,9 +41,13 @@ export default function Book(props) {
             </Typography>
           </div>
         </div>
-        <Grid container spacing={1} className="book-buttons" >
-        <Grid item md={6}>
-          <Button size="small" className="bag-button button" variant="contained" color="primary">
+        <Grid container spacing={0} className="book-buttons" >
+        { isInCart ? <Grid item md={12}>
+          <Button size="small" onClick={handleInCart} className="button full-button" variant="contained" color="secondary">
+            Added to Bag
+          </Button>
+          </Grid> : <><Grid item md={6}>
+          <Button size="small" onClick={handleInCart} className="bag-button button" variant="contained" color="primary">
             Add to Bag
           </Button>
           </Grid>
@@ -43,7 +55,8 @@ export default function Book(props) {
           <Button size="small" className="button" variant="outlined" color="primary">
             Wishlist
           </Button>
-          </Grid>
+          </Grid></>}
+        
         </Grid>
       </Card>
     </Grid>

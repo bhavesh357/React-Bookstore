@@ -218,6 +218,10 @@
   background-color: #ffffff !important;
 }
 
+.full-button {
+  width: 100% !important;
+}
+
 .book-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
