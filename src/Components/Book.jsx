@@ -18,7 +18,13 @@ export default function Book(props) {
   const [isInCart,setIsIncart] = useState(false);
 
   const addInCart= () => {
-    firebaseCalls.addBookToUser(props.book.id).then( (res) => {
+    firebaseCalls.addBookToCart(props.book.id).then( (res) => {
+      setIsIncart(!isInCart);
+    });
+  }
+
+  const removeFromCart = () => {
+    firebaseCalls.removeBookToCart(props.book.id).then( (res) => {
       setIsIncart(!isInCart);
     });
   }
@@ -44,7 +50,7 @@ export default function Book(props) {
         </div>
         <Grid container spacing={0} className="book-buttons" >
         { isInCart ? <Grid item md={12}>
-          <Button size="small" onClick={addInCart} className="button full-button" variant="contained" color="secondary">
+          <Button size="small" onClick={removeFromCart} className="button full-button" variant="contained" color="secondary">
             Added to Bag
           </Button>
           </Grid> : <><Grid item md={6}>

@@ -1,3 +1,4 @@
+import { remove } from "lodash";
 import firebase from "./../Config/fbConfig";
 class FirebaseCalls {
   store = firebase.firestore();
@@ -14,10 +15,25 @@ class FirebaseCalls {
       });
   };
 
-  addBookToUser = async (id) => {
+  removeBookToCart = async (id) => {
     const user = this.getUser();
     const bookList = await this.getBookList();
-    console.log(bookList);
+    remove(bookList, (book) => {
+      return book.id===id;
+    });
+
+    user.set({
+        bookList: [
+          ...bookList
+        ],
+      },{
+        merge: true
+      })
+  };
+
+  addBookToCart = async (id) => {
+    const user = this.getUser();
+    const bookList = await this.getBookList();
     user.set({
         bookList: [
           ...bookList,
