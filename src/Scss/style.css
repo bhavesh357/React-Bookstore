@@ -229,6 +229,10 @@
 .book-title {
   font-weight: 600 !important;
   margin-bottom: 0em !important;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .book-author {
