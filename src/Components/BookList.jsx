@@ -40,7 +40,7 @@ export default function BookList(props) {
 
   useEffect(() => {
     props.changeBookBadge(booksInCart.length);
-  },[]);
+  });
 
   const filterBooks = (list) => {
     if (props.searchText === "") {

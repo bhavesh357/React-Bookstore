@@ -14,6 +14,7 @@ import { add } from "lodash";
 import validation from "./../../Service/validation";
 import Navbar from "../Navbar";
 import firebaseCalls from "./../../Service/firebase";
+import OrderSummary from "../OrderSummary";
 
 let Validate = new validation();
 
@@ -52,6 +53,7 @@ export default function Cart() {
   }, []);
 
   const reloadCart = () => {
+      console.log("reloading");
     firebaseCalls.getBookListWithDetails().then((res) => {
       console.log(res);
       setBookList(res);
@@ -248,6 +250,9 @@ export default function Cart() {
                 </Grid>
               </Grid>
             </div>
+            <OrderSummary 
+              reloadCart={reloadCart}
+              books={bookList} />       
           </Grid>
         </Grid>
       </Grid>
