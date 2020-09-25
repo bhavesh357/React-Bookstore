@@ -15,6 +15,7 @@ import validation from "./../../Service/validation";
 import Navbar from "../Navbar";
 import firebaseCalls from "./../../Service/firebase";
 import OrderSummary from "../OrderSummary";
+import { Redirect, useHistory } from "react-router-dom";
 
 let Validate = new validation();
 
@@ -45,6 +46,25 @@ export default function Cart() {
     validateSetter(Validate.validateInput(e.target.value, pattern));
   };
 
+  const allDetailsValid = () => {
+    return (
+      name.length !== 0 &&
+      phone.length !== 0 &&
+      pincode.length !== 0 &&
+      locality.length !== 0 &&
+      address.length !== 0 &&
+      city.length !== 0 &&
+      landmark.length !== 0 &&
+      !isNameInvalid &&
+      !isPhoneInvalid &&
+      !isPincodeInvalid &&
+      !isLocalityInvalid &&
+      !isAddressInvalid &&
+      !isCityInvalid &&
+      !isLandmarkInvalid
+    );
+  };
+
   useEffect(() => {
     firebaseCalls.getBookListWithDetails().then((res) => {
       console.log(res);
@@ -53,11 +73,22 @@ export default function Cart() {
   }, []);
 
   const reloadCart = () => {
-      console.log("reloading");
+    console.log("reloading");
     firebaseCalls.getBookListWithDetails().then((res) => {
       console.log(res);
       setBookList(res);
     });
+  };
+
+  const history = useHistory();
+
+  const placeOrder = () => {
+    if (allDetailsValid()) {
+        firebaseCalls.clearCart().then( (res) => {
+            console.log("redirecting");
+            history.push("/order");
+        } )
+    }
   };
 
   return (
@@ -227,7 +258,7 @@ export default function Cart() {
                       dir="row"
                       value={type}
                       onChange={(e) => {
-                        changeValue(e, setType);
+                        setType(e.target.value);
                       }}
                     >
                       <FormControlLabel
@@ -250,9 +281,11 @@ export default function Cart() {
                 </Grid>
               </Grid>
             </div>
-            <OrderSummary 
+            <OrderSummary
+              placeOrder={placeOrder}
               reloadCart={reloadCart}
-              books={bookList} />       
+              books={bookList}
+            />
           </Grid>
         </Grid>
       </Grid>

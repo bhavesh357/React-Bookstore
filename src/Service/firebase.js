@@ -100,6 +100,13 @@ class FirebaseCalls {
     const currentUser = firebase.auth().currentUser.uid;
     return this.store.collection("users").doc(currentUser);
   }
+
+  clearCart = async() => {
+    const user = this.getUser();
+    user.set({
+      bookList: []
+    });
+  }
 }
 
 export default new FirebaseCalls();
