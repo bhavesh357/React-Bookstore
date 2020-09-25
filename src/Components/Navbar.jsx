@@ -124,11 +124,14 @@ function Navbar(props) {
   };
 
   const handleSearch = (event) => {
-    console.log(event.target.value.length);
     if (event.target.value.length > 0) {
-      props.handleSearch(event.target.value);
+      if(props.handleSearch){
+        props.handleSearch(event.target.value);
+      }
     } else {
-      props.handleSearch("");
+      if(props.handleSearch){
+        props.handleSearch(event.target.value);
+      }
     }
   };
 

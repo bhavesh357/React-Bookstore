@@ -83,21 +83,18 @@ export default function Cart() {
   const history = useHistory();
 
   const placeOrder = () => {
-    if (allDetailsValid()) {
+    // if (allDetailsValid()) {
         firebaseCalls.clearCart().then( (res) => {
             console.log("redirecting");
             history.push("/order");
         } )
-    }
+    // }
   };
 
   return (
     <div className="dashboard">
       <Navbar
         bookCount={0}
-        handleSearch={() => {
-          console.log("cart");
-        }}
       />
       <Grid container className="cart-details">
         <Grid item md={10}>

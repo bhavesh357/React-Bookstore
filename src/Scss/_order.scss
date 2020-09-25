@@ -1,0 +1,40 @@
+@import './variables';
+
+.order-details{
+    display: flex;
+    padding: 2em 0em;
+    justify-content: center;
+}
+
+.order{
+    width: 100%;
+}
+
+.order-title{
+    position: absolute;
+    top: 130px;
+    left: 240px;
+}
+
+.order-info{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-subtitle{
+    padding: 2em;
+}
+
+.small-row{
+    width: 30%;
+}
+
+.table-head{
+    background: $order-background;
+}
+
+.small-body{
+    border-right: $order-border 2px solid;
+}
