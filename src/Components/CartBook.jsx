@@ -15,7 +15,7 @@ export default function CartBook(props) {
     
     return (
         <div className="book-info-cart">
-        <div className="book-image-container">
+        <div className="book-image-container-cart">
         <img src={props.book.image} alt={props.book.title} />
         </div>
         <div className="book-details-cart">

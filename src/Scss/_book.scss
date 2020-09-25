@@ -8,6 +8,12 @@
     }
 }
 
+.book-image-container-cart{
+    img{
+        height: 200px;
+    }
+}
+
 .book{
     &:hover{
         box-shadow: $box-shadow-general;

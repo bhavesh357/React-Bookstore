@@ -1,16 +1,46 @@
 @import './variables';
 
 .cart-details{
-    padding: 2em 8em;
+    padding: 0em 8em;
+}
+
+.cart-input{
+    margin: 1em 0em 0em 0em !important;
+}
+
+.cart-radio{
+    flex-direction: row !important;
+    justify-content: space-between;
+}
+
+.cart-input-col{
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button{
+        -webkit-appearance: none !important;
+    }
+}
+
+legend.cart-input{
+    display: flex;
+}
+
+.cart-form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-input-col{
+    display: flex;
+    justify-content: flex-start;
 }
 
 .cart-box{
     border: solid 1px $border-color;
-    padding: 0em 3em;
     display: flex;
     flex-direction: column;
     align-items: baseline;
     padding: 1em 2em;
+    margin: 2em 0em;
 }
 
 .empty-cart{
