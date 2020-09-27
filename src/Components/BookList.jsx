@@ -71,14 +71,19 @@ export default function BookList(props) {
   }
 
   useEffect(() => {
-    firebaseCalls.getBooks().then((res) => {
+    firebaseCalls.getBooks(sort).then((res) => {
       setBooks(filterBooks(res));
       reloadBooks();
     });
   },[]);
 
+
   const handleSortChange = (event) => {
     setSort(event.target.value);
+    firebaseCalls.getBooks(event.target.value).then((res) => {
+      setBooks(filterBooks(res));
+      reloadBooks();
+    });
   };
 
   const handleClose = () => {
@@ -136,7 +141,6 @@ export default function BookList(props) {
               <MenuItem value={"RL"}>Sort by relevance</MenuItem>
               <MenuItem value={"LH"}>Price: Low to High</MenuItem>
               <MenuItem value={"HL"}>Price: High to Low</MenuItem>
-              <MenuItem value={"NW"}>Newest Arrival</MenuItem>
             </Select>
           </FormControl>
         </Grid>

@@ -83,12 +83,12 @@ export default function Cart() {
   const history = useHistory();
 
   const placeOrder = () => {
-    // if (allDetailsValid()) {
+    if (allDetailsValid()) {
         firebaseCalls.clearCart().then( (res) => {
             console.log("redirecting");
             history.push("/order");
         } )
-    // }
+    }
   };
 
   return (
