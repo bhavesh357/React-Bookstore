@@ -30,11 +30,36 @@ export default function Book(props) {
     });
   }
 
+  const fullAddToBagButton = (<Grid item md={12}>
+  <Button size="small" onClick={removeFromCart} className="button full-button" variant="contained" color="secondary">
+    Added to Bag
+  </Button>
+  </Grid>);
+
+const fullWishListButton = (<Grid item md={12}>
+  <Button size="small" className="button full-button" variant="outlined" color="primary">
+    Wishlist
+  </Button>
+  </Grid>);
+
+  const bothButtons = (<><Grid item md={6}>
+    <Button size="small" onClick={addInCart} className="bag-button button" variant="contained" color="primary">
+      Add to Bag
+    </Button>
+    </Grid>
+  <Grid item md={6}>
+    <Button size="small" className="button" variant="outlined" color="primary">
+      Wishlist
+    </Button>
+    </Grid></>);
+
   return (
     <Grid className="book">
       <Card className={classes.root}>
         <div className="book-info">
           <div className="book-image-container">
+          { props.book.quantity===0 ?  <div className="out-of-stock" >Out Of Stock</div> : null}
+            
             <img src={props.book.image} alt={props.book.title}/>
           </div>
           <div className="book-details">
@@ -50,21 +75,7 @@ export default function Book(props) {
           </div>
         </div>
         <Grid container spacing={0} className="book-buttons" >
-        { props.inCart ? <Grid item md={12}>
-          <Button size="small" onClick={removeFromCart} className="button full-button" variant="contained" color="secondary">
-            Added to Bag
-          </Button>
-          </Grid> : <><Grid item md={6}>
-          <Button size="small" onClick={addInCart} className="bag-button button" variant="contained" color="primary">
-            Add to Bag
-          </Button>
-          </Grid>
-        <Grid item md={6}>
-          <Button size="small" className="button" variant="outlined" color="primary">
-            Wishlist
-          </Button>
-          </Grid></>}
-        
+        { props.book.quantity===0 ?  fullWishListButton : props.inCart ? fullAddToBagButton : bothButtons }
         </Grid>
       </Card>
     </Grid>

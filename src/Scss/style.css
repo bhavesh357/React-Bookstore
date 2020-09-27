@@ -178,6 +178,7 @@
 .book-image-container {
   background: #F5F5F5;
   padding: 1em;
+  position: relative;
 }
 
 .book-image-container img {
@@ -234,6 +235,19 @@
   max-width: 220px;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.out-of-stock {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: white;
+  padding: 0.5em 3em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.9;
 }
 
 .book-author {
