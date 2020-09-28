@@ -5,19 +5,19 @@
     padding: 1em;
     position: relative;
     img{
-        height: 200px;
+        height: 150px;
     }
 }
 
 .book-image-container-cart{
     img{
-        height: 200px;
+        height: 150px;
     }
 }
 
 .book-image-container-cart-small{
     img{
-        height: 150px;
+        height: 100px;
     }
 }
 
@@ -78,14 +78,17 @@
 .book-info-side-cart{
     display: flex;
     flex-direction: column;
-    padding: 0em 0em 2em 0em;
+    padding: 0em 0em 1em 0em;
     align-items: flex-start;
 }
 
 .cart-book-quantity{
     display: flex;
     justify-content: center;
-    width: 20%;
+    width: 3em;
+    input{
+        text-align: center !important;
+    }
 }
 
 .book-cart-quantity{
