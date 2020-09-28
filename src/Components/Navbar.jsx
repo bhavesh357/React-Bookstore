@@ -125,11 +125,11 @@ function Navbar(props) {
 
   const handleSearch = (event) => {
     if (event.target.value.length > 0) {
-      if(props.handleSearch){
+      if (props.handleSearch) {
         props.handleSearch(event.target.value);
       }
     } else {
-      if(props.handleSearch){
+      if (props.handleSearch) {
         props.handleSearch(event.target.value);
       }
     }
@@ -163,11 +163,13 @@ function Navbar(props) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={0} color="secondary">
-            <ShoppingCartOutlinedIcon />
-          </Badge>
-        </IconButton>
+        <Link to="/cart" className="navbar-button-dark">
+          <IconButton aria-label="show 17 new notifications" color="inherit">
+            <Badge badgeContent={bookCount} color="secondary">
+              <ShoppingCartOutlinedIcon />
+            </Badge>
+          </IconButton>
+        </Link>
         <p>Cart</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>

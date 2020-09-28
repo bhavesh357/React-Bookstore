@@ -58,53 +58,55 @@ export default function CartBook(props) {
         </div>
         {props.isQuantityShown ? (
           <div className="book-cart-quantity">
-            <IconButton
-              onClick={() => {
-                if (selectedQuantity > 1) {
-                  console.log(selectedQuantity);
-                  setSelectedQuantity(selectedQuantity - 1);
-                  firebaseCalls
-                    .editQuantity(props.book.id, selectedQuantity - 1)
-                    .then(() => {
-                      props.reloadCart();
-                    });
-                }
-              }}
-            >
-              <RemoveCircleOutlineRoundedIcon />
-            </IconButton>
-            <TextField
-              onChange={handleChange}
-              type="number"
-              size="small"
-              className="cart-book-quantity"
-              variant="outlined"
-              value={selectedQuantity}
-            />
-            <IconButton
-              onClick={() => {
-                if (selectedQuantity < props.book.quantity) {
-                  console.log(selectedQuantity);
-                  setSelectedQuantity(selectedQuantity + 1);
-                  firebaseCalls
-                    .editQuantity(props.book.id, selectedQuantity + 1)
-                    .then(() => {
-                      props.reloadCart();
-                    });
-                }
-              }}
-            >
-              <AddCircleOutlineRoundedIcon />
-            </IconButton>
-            <Button
-              onClick={() => {
-                firebaseCalls.removeBookToCart(props.book.id).then(() => {
-                  props.reloadCart();
-                });
-              }}
-            >
-              Remove
-            </Button>
+            <div>
+              <IconButton
+                onClick={() => {
+                  if (selectedQuantity > 1) {
+                    setSelectedQuantity(selectedQuantity - 1);
+                    firebaseCalls
+                      .editQuantity(props.book.id, selectedQuantity - 1)
+                      .then(() => {
+                        props.reloadCart();
+                      });
+                  }
+                }}
+              >
+                <RemoveCircleOutlineRoundedIcon />
+              </IconButton>
+              <TextField
+                onChange={handleChange}
+                type="number"
+                size="small"
+                className="cart-book-quantity"
+                variant="outlined"
+                value={selectedQuantity}
+              />
+              <IconButton
+                onClick={() => {
+                  if (selectedQuantity < props.book.quantity) {
+                    setSelectedQuantity(selectedQuantity + 1);
+                    firebaseCalls
+                      .editQuantity(props.book.id, selectedQuantity + 1)
+                      .then(() => {
+                        props.reloadCart();
+                      });
+                  }
+                }}
+              >
+                <AddCircleOutlineRoundedIcon />
+              </IconButton>
+            </div>
+            <div>
+              <Button
+                onClick={() => {
+                  firebaseCalls.removeBookToCart(props.book.id).then(() => {
+                    props.reloadCart();
+                  });
+                }}
+              >
+                Remove
+              </Button>
+            </div>
           </div>
         ) : (
           ""

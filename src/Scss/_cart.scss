@@ -2,6 +2,10 @@
 
 .cart-details{
     padding: 0em 8em;
+    @media only screen and (max-width : 992px){
+    justify-content: center;
+    padding: 0em 0em;
+    }
 }
 
 .cart-input{

@@ -97,7 +97,7 @@ export default function Cart() {
         bookCount={0}
       />
       <Grid container className="cart-details">
-        <Grid item md={10}>
+        <Grid item container md={10}>
           <Grid item md={10}>
             <CustomerCart
               reloadCart={reloadCart}
