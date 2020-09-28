@@ -61,6 +61,7 @@ export default function CartBook(props) {
             <IconButton
               onClick={() => {
                 if (selectedQuantity > 1) {
+                  console.log(selectedQuantity);
                   setSelectedQuantity(selectedQuantity - 1);
                   firebaseCalls
                     .editQuantity(props.book.id, selectedQuantity - 1)
@@ -83,6 +84,7 @@ export default function CartBook(props) {
             <IconButton
               onClick={() => {
                 if (selectedQuantity < props.book.quantity) {
+                  console.log(selectedQuantity);
                   setSelectedQuantity(selectedQuantity + 1);
                   firebaseCalls
                     .editQuantity(props.book.id, selectedQuantity + 1)

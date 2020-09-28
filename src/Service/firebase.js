@@ -15,6 +15,8 @@ class FirebaseCalls {
             booksList.push({ ...doc.data(), id: doc.id });
           });
           return booksList;
+        }).catch( ( err ) => {
+          console.log(err);
         });
     }
     return this.store
@@ -22,11 +24,12 @@ class FirebaseCalls {
       .get()
       .then((res) => {
         let booksList = [];
-        console.log(res);
         res.forEach((doc) => {
           booksList.push({ ...doc.data(), id: doc.id });
         });
         return booksList;
+      }).catch( ( err ) => {
+        console.log(err);
       });
   };
 
@@ -34,16 +37,15 @@ class FirebaseCalls {
     let booksInCart = await this.getBookList();
     let allBooks = await this.getBooks();
     let tempBooks = [];
-    for (let i = 0; i < booksInCart.length; i++) {
+    booksInCart.forEach( (cartBook) => {
       let tempBook = find(allBooks, (book) => {
-        return book.id === booksInCart[i].id;
+        return book.id === cartBook.id;
       });
       tempBooks.push({
         ...tempBook,
-        selectedQuantity: booksInCart[i].quantity,
+        selectedQuantity: cartBook.quantity,
       });
-    }
-
+    } )
     return tempBooks;
   };
 
@@ -53,8 +55,7 @@ class FirebaseCalls {
     remove(bookList, (book) => {
       return book.id === id;
     });
-
-    user.set(
+    await user.set(
       {
         bookList: [...bookList],
       },
@@ -70,7 +71,7 @@ class FirebaseCalls {
     remove(bookList, (book) => {
       return book.id === id;
     });
-    user.set(
+    await user.set(
       {
         bookList: [
           ...bookList,
@@ -89,7 +90,7 @@ class FirebaseCalls {
   addBookToCart = async (id) => {
     const user = this.getUser();
     const bookList = await this.getBookList();
-    user.set(
+    await user.set(
       {
         bookList: [
           ...bookList,
@@ -109,7 +110,6 @@ class FirebaseCalls {
     const user = this.getUser();
     const doc = await user.get();
     let bookList;
-    console.log(doc.data());
     if (!doc.exists) {
       bookList = [];
     } else {
@@ -125,7 +125,7 @@ class FirebaseCalls {
 
   clearCart = async () => {
     const user = this.getUser();
-    user.set({
+    await user.set({
       bookList: [],
     });
   };
