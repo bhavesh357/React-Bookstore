@@ -168,9 +168,12 @@
 }
 
 .booklist-books {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: inherit;
       flex-wrap: inherit;
 }
@@ -187,6 +190,10 @@
 
 .book-image-container-cart img {
   height: 150px;
+}
+
+.book-card {
+  width: 280px;
 }
 
 .book-image-container-cart-small img {

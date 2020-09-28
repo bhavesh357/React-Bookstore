@@ -23,6 +23,7 @@
 }
 
 .booklist-books{
-    display: flex;
+    display: flex !important;
+    justify-content: center;
     flex-wrap: inherit;
 }
