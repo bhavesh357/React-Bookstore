@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Snackbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -24,6 +24,8 @@ export default function BookList(props) {
   const classes = useStyles();
   const [sort, setSort] = React.useState("RL");
   const [sortOpen, setSortOpen] = React.useState(false);
+  const [snackbarStatus, setSnackbarStatus] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState("");
   const [books, setBooks] = React.useState([]);
   const [itemsPerPage] = React.useState(8);
   const [pageCount, setPageCount] = React.useState(1);
@@ -104,6 +106,16 @@ export default function BookList(props) {
       }) !== -1
     );
   };
+  
+  const handleSnackbarOpen = (message) => {
+    setSnackbarMessage(message);
+    setSnackbarStatus(true);
+  }
+
+  const handleSnackbarClose = () => {
+    setSnackbarMessage("");
+    setSnackbarStatus(false);
+  };
 
   let booksList = books.map((item, index) => {
     if (
@@ -112,15 +124,27 @@ export default function BookList(props) {
     ) {
       return (
         <Grid className="book-card" item key={item.id} md={3}>
-          <Book reloadBooks={reloadBooks} inCart={isInCart(item.id)} book={item} />
+          <Book showSnackbar={handleSnackbarOpen} reloadBooks={reloadBooks} inCart={isInCart(item.id)} book={item} />
         </Grid>
       );
     }
     return null;
   });
 
+
   return (
     <Grid container>
+    <Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          open={snackbarStatus}
+          onClose={handleSnackbarClose}
+          autoHideDuration={2000}
+          message={snackbarMessage}
+        />
+        
       <Grid item md={1}></Grid>
       <Grid container item md={10}>
         <Grid item container md={12} className="booklist-details">

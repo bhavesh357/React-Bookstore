@@ -19,11 +19,13 @@ export default function Book(props) {
   const addInCart= () => {
     firebaseCalls.addBookToCart(props.book.id).then( () => {
       props.reloadBooks();
+      props.showSnackbar(props.book.title+" has been added to the cart");
     });
   }
 
   const removeFromCart = () => {
     firebaseCalls.removeBookToCart(props.book.id).then( () => {
+      props.showSnackbar(props.book.title+" has been removed from the cart");
       props.reloadBooks();
     });
   }
