@@ -1,5 +1,5 @@
 import { Button, IconButton, TextField, Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@material-ui/icons/RemoveCircleOutlineRounded";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import firebaseCalls from "./../Service/firebase";
@@ -58,7 +58,7 @@ export default function CartBook(props) {
         </div>
         {props.isQuantityShown ? (
           <div className="book-cart-quantity">
-            <div>
+            <div className="book-cart-quantity-buttons">
               <IconButton
                 onClick={() => {
                   if (selectedQuantity > 1) {
@@ -96,7 +96,7 @@ export default function CartBook(props) {
                 <AddCircleOutlineRoundedIcon />
               </IconButton>
             </div>
-            <div>
+            <div className="book-cart-quantity-buttons">
               <Button
                 onClick={() => {
                   firebaseCalls.removeBookToCart(props.book.id).then(() => {

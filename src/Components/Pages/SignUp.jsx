@@ -95,8 +95,6 @@ export class SignUp extends React.Component {
       this.props.signUp(user, () => {
         if (this.props.authError !== null) {
           this.props.showSnackbar(this.props.authError);
-        } else {
-          console.log("signed up");
         }
       })
       let message;
@@ -301,7 +299,6 @@ export class SignUp extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     authError: state.auth.authError,
     snackbar: state.snackbar,

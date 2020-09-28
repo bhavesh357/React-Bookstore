@@ -10,12 +10,11 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { add } from "lodash";
 import validation from "./../../Service/validation";
 import Navbar from "../Navbar";
 import firebaseCalls from "./../../Service/firebase";
 import OrderSummary from "../OrderSummary";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 let Validate = new validation();
 
@@ -67,15 +66,12 @@ export default function Cart() {
 
   useEffect(() => {
     firebaseCalls.getBookListWithDetails().then((res) => {
-      console.log(res);
       setBookList(res);
     });
   }, []);
 
   const reloadCart = () => {
-    console.log("reloading");
     firebaseCalls.getBookListWithDetails().then((res) => {
-      console.log(res);
       setBookList(res);
     });
   };
@@ -84,8 +80,7 @@ export default function Cart() {
 
   const placeOrder = () => {
     if (allDetailsValid()) {
-        firebaseCalls.clearCart().then( (res) => {
-            console.log("redirecting");
+        firebaseCalls.clearCart().then( () => {
             history.push("/order");
         } )
     }

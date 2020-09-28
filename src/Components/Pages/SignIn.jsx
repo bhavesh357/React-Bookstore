@@ -43,11 +43,8 @@ export class SignIn extends React.Component {
       this.props.signIn(user, () => {
         if (this.props.authError !== null) {
           this.props.showSnackbar(this.props.authError);
-        } else {
-          console.log("logged in", this.props.authError);
         }
       });
-      console.log(this.props);
     }
   };
 
@@ -143,7 +140,6 @@ export class SignIn extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     authError: state.auth.authError,
     snackbar: state.snackbar,

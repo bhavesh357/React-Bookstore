@@ -1,11 +1,8 @@
 import React from 'react'
-import { connect, useSelector } from 'react-redux';
 import BookList from '../BookList';
 import Navbar from '../Navbar';
-import firebaseCalls from './../../Service/firebase';
 
-function Dashboard(props) {
-    const auth = useSelector(state => state.firebase.auth);
+function Dashboard() {
 
     const [searchText, setSearchText] = React.useState('');
     const [bookCount, setBookCount] = React.useState(0);

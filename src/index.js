@@ -12,7 +12,6 @@ import thunk from 'redux-thunk';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { getFirebase, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import fbConfig from './Config/fbConfig';
-import firebase from 'firebase/app';
 
 const theme = createMuiTheme({
   palette: {
@@ -38,9 +37,7 @@ const store = createStore(rootReducer,
   );
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider store={store}>
-    
     <ReactReduxFirebaseProvider
       firebase={fbConfig}
       config={fbConfig}
@@ -49,8 +46,7 @@ ReactDOM.render(
         <App />
       </ThemeProvider>
       </ReactReduxFirebaseProvider>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
   document.getElementById("root")
 );
 

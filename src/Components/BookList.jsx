@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
@@ -26,7 +25,7 @@ export default function BookList(props) {
   const [sort, setSort] = React.useState("RL");
   const [sortOpen, setSortOpen] = React.useState(false);
   const [books, setBooks] = React.useState([]);
-  const [itemsPerPage, setItemsPerPage] = React.useState(8);
+  const [itemsPerPage] = React.useState(8);
   const [pageCount, setPageCount] = React.useState(1);
   const [searchText, setSearchText] = React.useState("");
   const [booksInCart, setBooksInCart] = React.useState([]);
@@ -54,7 +53,6 @@ export default function BookList(props) {
             .includes(props.searchText.toLowerCase()) ||
           list[i].author.toLowerCase().includes(props.searchText.toLowerCase())
         ) {
-          console.log(list[i]);
           newList.push(list[i]);
         }
       }
@@ -75,6 +73,7 @@ export default function BookList(props) {
       setBooks(filterBooks(res));
       reloadBooks();
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
 

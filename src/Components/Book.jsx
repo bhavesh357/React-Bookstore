@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import React,{ useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
@@ -17,15 +17,13 @@ export default function Book(props) {
 
 
   const addInCart= () => {
-    console.log("add");
-    firebaseCalls.addBookToCart(props.book.id).then( (res) => {
+    firebaseCalls.addBookToCart(props.book.id).then( () => {
       props.reloadBooks();
     });
   }
 
   const removeFromCart = () => {
-    console.log("remove");
-    firebaseCalls.removeBookToCart(props.book.id).then( (res) => {
+    firebaseCalls.removeBookToCart(props.book.id).then( () => {
       props.reloadBooks();
     });
   }

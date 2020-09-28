@@ -329,6 +329,12 @@
   }
 }
 
+.book-cart-quantity-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .book-price {
   font-weight: 600 !important;
   padding-top: 0.5em;
