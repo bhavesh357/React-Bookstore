@@ -15,7 +15,7 @@ class FirebaseCalls {
           });
           return booksList;
         }).catch( ( err ) => {
-          console.log(err);
+          throw new Error("Couldn't find books");
         });
     }
     return this.store
@@ -28,7 +28,7 @@ class FirebaseCalls {
         });
         return booksList;
       }).catch( ( err ) => {
-        console.log(err);
+        throw new Error("Couldn't find books");
       });
   };
 

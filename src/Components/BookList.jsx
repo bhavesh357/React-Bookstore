@@ -36,6 +36,8 @@ export default function BookList(props) {
   const reloadBooks = () => {
     firebaseCalls.getBookList().then((res) => {
       setBooksInCart(res);
+    }).catch( (err) => {
+      handleSnackbarOpen(err.message);
     });
   }
 
@@ -67,6 +69,8 @@ export default function BookList(props) {
     setPageCount(1);
     firebaseCalls.getBooks().then((res) => {
       setBooks(filterBooks(res));
+    }).catch( (err) => {
+      handleSnackbarOpen(err.message);
     });
   }
 
@@ -74,7 +78,9 @@ export default function BookList(props) {
     firebaseCalls.getBooks(sort).then((res) => {
       setBooks(filterBooks(res));
       reloadBooks();
-    });
+    }).catch( (err) => {
+      handleSnackbarOpen(err.message);
+    });;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
@@ -84,6 +90,8 @@ export default function BookList(props) {
     firebaseCalls.getBooks(event.target.value).then((res) => {
       setBooks(filterBooks(res));
       reloadBooks();
+    }).catch( (err) => {
+      handleSnackbarOpen(err.message);
     });
   };
 
